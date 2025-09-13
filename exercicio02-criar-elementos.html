@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List SuperDev</title>
+    <style>
+        /* Estilo claro e limpo */
+        body {
+            background-color: #fdfdfd;
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .titulo {
+            font-size: 2.5em;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .descricao {
+            font-size: 1.1em;
+            color: #555;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .botao-registrar {
+            padding: 10px 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .botao-registrar:hover {
+            background-color: #2980b9;
+        }
+
+        #lista-tarefas {
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+
+        #lista-tarefas li {
+            margin-bottom: 10px;
+            color: #2d3436;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let body = document.body;
+        let ol = document.createElement("ol");
+        ol.id = "lista-tarefas";
+
+        function criarTitulo() {
+            let h1 = document.createElement("h1");
+            h1.innerText = "Minhas Tarefas do Curso SuperDev";
+            h1.classList.add("titulo");
+            body.appendChild(h1);
+        }
+
+        function criarParagrafo() {
+            let p = document.createElement("p");
+            p.innerText = "Este curso ensina como desenvolver projetos incríveis com HTML, CSS e JavaScript.";
+            p.classList.add("descricao");
+            body.appendChild(p);
+        }
+
+        function criarListaOrdenada() {
+            body.appendChild(ol);
+        }
+
+        function criarCampoDeTitulo() {
+            let label = document.createElement("label");
+            label.setAttribute("for", "titulo-tarefa");
+            label.innerText = "Título da Tarefa:";
+            label.classList.add("form-label");
+
+            let input = document.createElement("input");
+            input.type = "text";
+            input.id = "titulo-tarefa";
+            input.classList.add("form-input");
+            input.addEventListener("keyup", processarTecla);
+
+            let botao = document.createElement("button");
+            botao.type = "button";
+            botao.innerText = "Registrar";
+            botao.classList.add("botao-registrar");
+            botao.addEventListener("click", registrar);
+
+            body.appendChild(label);
+            body.appendChild(input);
+            body.appendChild(botao);
+        }
+
+        function registrar() {
+            let input = document.getElementById("titulo-tarefa");
+            let titulo = input.value.trim();
+
+            if (titulo !== "") {
+                let li = document.createElement("li");
+                li.innerText = titulo;
+                ol.appendChild(li);
+
+                input.value = "";
+                input.focus();
+            }
+        }
+
+        function processarTecla(event) {
+            if (event.key === "Enter") {
+                registrar();
+            }
+        }
+
+        // Executar funções
+        criarTitulo();
+        criarParagrafo();
+        criarListaOrdenada();
+        criarCampoDeTitulo();
+
+    </script>
+</body>
+
+</html>
